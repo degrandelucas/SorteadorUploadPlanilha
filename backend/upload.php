@@ -16,25 +16,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['excelFile'])) {
     }
 
     try {
-        $spreadsheet = IOFactory::load($file);
-        $worksheet = $spreadsheet->getActiveSheet();
-        $data = [];
+        $uploadedFile = IOFactory::load($file);
+        $worksheet = $uploadedFile->getActiveSheet(); // Get the first active sheet
+        $extractedData = [];
 
         foreach ($worksheet->getRowIterator() as $row) {
             $cellIterator = $row->getCellIterator();
-            $cellIterator->setIterateOnlyExistingCells(false);
             $rowData = [];
             foreach ($cellIterator as $cell) {
                 $rowData[] = $cell->getValue();
             }
             // Check if there is enough data in the line
             if (count($rowData) >= 2) {
-                $data[] = ['numero' => $rowData[0], 'nome' => $rowData[1]];
+                $extractedData[] = ['numero' => $rowData[0], 'nome' => $rowData[1]];
             }
         }
 
-        session_start();
-        $_SESSION['excelData'] = $data;
+
+        session_start(); // Start PHP session to manage user data
+        $_SESSION['excelData'] = $extractedData; // Store extracted Excel data in session for later use
 
         echo json_encode(['success' => true, 'message' => 'Arquivo carregado com sucesso!']);
 
