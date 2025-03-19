@@ -1,36 +1,36 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const sortearBtn = document.getElementById('sortearBtn');
-    const contagemRegressivaDiv = document.getElementById('contagemRegressiva');
-    const vencedorDiv = document.getElementById('vencedor');
-    const vencedoresDiv = document.getElementById('vencedores');
+    const drawBtn = document.getElementById('drawBtn');
+    const countDownDiv = document.getElementById('countDown');
+    const winnerDiv = document.getElementById('winner');
+    const winnersListDiv = document.getElementById('winnersList');
 
-    sortearBtn.addEventListener('click', function() {
-        let contagemRegressiva = 3;
-        contagemRegressivaDiv.textContent = 'Contagem Regressiva: ' + contagemRegressiva;
+    drawBtn.addEventListener('click', function() {
+        let countDown = 3;
+        countDownDiv.textContent = 'Contagem Regressiva: ' + countDown;
 
-        const intervalo = setInterval(() => {
-            contagemRegressiva--;
-            contagemRegressivaDiv.textContent = 'Contagem Regressiva: ' + contagemRegressiva;
+        const interval = setInterval(() => {
+            countDown--;
+            countDownDiv.textContent = 'Contagem Regressiva: ' + countDown;
 
-            if (contagemRegressiva <= 0) {
-                clearInterval(intervalo);
-                contagemRegressivaDiv.textContent = '';
-                obterVencedor();
+            if (countDown <= 0) {
+                clearInterval(interval);
+                countDownDiv.textContent = '';
+                getWinner();
             }
         }, 1000);
     });
 
-    function obterVencedor() {
+    function getWinner() {
         axios.get('../backend/sorteio.php')
             .then(response => {
                 const data = response.data;
                 if (data.success) {
-                    vencedorDiv.textContent = 'Vencedor: ' + data.vencedor.numero + ' - ' + data.vencedor.nome;
-                    let vencedoresHTML = 'Vencedores: ';
+                    winnerDiv.textContent = 'Vencedor: ' + data.vencedor.numero + ' - ' + data.vencedor.nome;
+                    let winnersHTML = 'Vencedores: ';
                     data.vencedores.forEach(vencedor => {
-                        vencedoresHTML += vencedor.numero + ' - ' + vencedor.nome + ', ';
+                        winnersHTML += vencedor.numero + ' - ' + vencedor.nome + ', ';
                     });
-                    vencedoresDiv.textContent = vencedoresHTML.slice(0, -2);
+                    winnersListDiv.textContent = winnersHTML.slice(0, -2);
                 } else {
                     alert(data.message);
                 }
