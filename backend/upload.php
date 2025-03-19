@@ -19,8 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['excelFile'])) {
         $uploadedFile = IOFactory::load($file);
         $worksheet = $uploadedFile->getActiveSheet(); // Get the first active sheet
         $extractedData = [];
+        $initialLine = 2;
 
-        foreach ($worksheet->getRowIterator() as $row) {
+        foreach ($worksheet->getRowIterator($initialLine) as $row) {
             $cellIterator = $row->getCellIterator();
             $rowData = [];
             foreach ($cellIterator as $cell) {
@@ -32,7 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['excelFile'])) {
             }
         }
 
-
+        $sectionTime = 4 * 60 * 60; // 4 hours
+        session_set_cookie_params($sectionTime);
         session_start(); // Start PHP session to manage user data
         $_SESSION['excelData'] = $extractedData; // Store extracted Excel data in session for later use
 

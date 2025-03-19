@@ -3,29 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-    <meta name="description" content="Realize o sorteio do números e nomes de vencedores através do carregamento de uma planilha" />
-    <title>Sorteio por Planilha</title>
+    <meta name="description" content="Realize o sorteio de números e nomes através do carregamento de uma planilha com todos os participantes." />
+    <title>Sorteador Planilha</title>
 </head>
 <body>
-    <div id="app">
-        <button @click="sortear">Sortear</button>
-        <div v-if="contagemRegressiva > 0">
-            Contagem Regressiva: {{ contagemRegressiva }}
-        </div>
-        <div v-if="vencedor">
-            Vencedor: {{ vencedor.numero }} - {{ vencedor.nome }}
-        </div>
-        <div v-if="vencedores.length > 0">
-            Vencedores:
-            <ul>
-                <li v-for="vencedor in vencedores" :key="vencedor.numero">
-                    {{ vencedor.numero }} - {{ vencedor.nome }}
-                </li>
-            </ul>
-        </div>
-    </div>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" id="excelFile" accept=".xlsx, .xls">
+        <button type="submit">Enviar Planilha</button>
+    </form>
+    <button id="sortearBtn">Sortear</button>
+    <div id="contagemRegressiva"></div>
+    <div id="vencedor"></div>
+    <div id="vencedores"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>
 </body>
