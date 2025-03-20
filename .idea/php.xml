@@ -10,21 +10,6 @@
     <option name="highlightLevel" value="WARNING" />
     <option name="transferred" value="true" />
   </component>
-  <component name="PhpIncludePathManager">
-    <include_path>
-      <path value="$PROJECT_DIR$/backend/vendor/composer" />
-      <path value="$PROJECT_DIR$/backend/vendor/myclabs/php-enum" />
-      <path value="$PROJECT_DIR$/backend/vendor/ezyang/htmlpurifier" />
-      <path value="$PROJECT_DIR$/backend/vendor/psr/simple-cache" />
-      <path value="$PROJECT_DIR$/backend/vendor/psr/http-message" />
-      <path value="$PROJECT_DIR$/backend/vendor/psr/http-factory" />
-      <path value="$PROJECT_DIR$/backend/vendor/psr/http-client" />
-      <path value="$PROJECT_DIR$/backend/vendor/maennchen/zipstream-php" />
-      <path value="$PROJECT_DIR$/backend/vendor/markbaker/matrix" />
-      <path value="$PROJECT_DIR$/backend/vendor/phpoffice/phpspreadsheet" />
-      <path value="$PROJECT_DIR$/backend/vendor/markbaker/complex" />
-    </include_path>
-  </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.4" />
   <component name="PhpStanOptionsConfiguration">
     <option name="transferred" value="true" />
