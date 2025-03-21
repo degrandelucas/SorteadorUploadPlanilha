@@ -1,29 +1,32 @@
-const uploadForm = document.getElementById('uploadForm');
-const drawBtn = document.getElementById('drawBtn');
-
-uploadForm.addEventListener('submit', async (event) => {
+document.getElementById('uploadForm').addEventListener('submit', function(event) {
     event.preventDefault();
-    try {
-        const response = await axios.post('../backend/upload.php', new FormData(uploadForm));
-        alert(response.data.message);
-    } catch (error) {
-        console.error(error);
-        alert('Erro upload');
-    }
+
+    const formData = new FormData(this); //this representa o event marcado id uploadForm
+
+    fetch('../backend/upload.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json()) // objeto response lê e converte a resposta da requisição
+    .then(data => { // variavel data armazana a resposta da requisição
+        if (data.success) {
+            alert(data.message);
+            document.getElementById('resetBtn').disabled = false;
+            document.getElementById('excelFile').disabled = true;
+            this.querySelector('[type="submit"]').disabled = true;
+        } else {
+            alert(data.message);
+        }
+    })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Erro ao enviar o arquivo');
+        });
 });
 
-drawBtn.addEventListener('click', async () => {
-    try {
-        const response = await axios.get('../backend/sorteio.php');
-        if (response.data.success) {
-            alert(response.data.vencedor ? `Vencedor: ${response.data.vencedor.numero} (${response.data.vencedor.nome})` : response.data.message);
-        }
-        else {
-            alert(response.data.message);
-        }
-    } catch (error) {
-
-        console.error(error);
-        alert('Erro sorteio');
-    }
+document.getElementById('resetBtn').addEventListener('click', function() {
+    document.getElementById('resetBtn').disabled = true;
+    document.getElementById('excelFile').disabled = false;
+    document.getElementById('excelFile').value = '';
+    document.getElementById('uploadForm').querySelector('[type="submit"]').disabled = false;
 });

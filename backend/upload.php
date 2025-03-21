@@ -34,6 +34,8 @@ class Upload
 
                 $connection->close();
 
+                echo json_encode(['success' => true , 'message' => 'Arquivo importado com sucesso.']);
+
             } catch (\Exception $error) {
                 echo json_encode(['success' => false, 'message' => 'Erro: ' . $error->getMessage()]);
             }
