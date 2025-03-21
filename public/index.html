@@ -11,7 +11,7 @@
         <div class="container mt-5">
             <h1>Sorteador Por Planilha</h1>
             <p>Carregue uma planilha com a coluna de números e a coluna dos nomes dos participantes e clique em "Sortear"</p>
-            <form id="uploadForm" enctype="multipart/form-data" class="mb-3">
+            <form action="../backend/upload.php" method="post" id="uploadForm" enctype="multipart/form-data" class="mb-3">
                 <div class="form-group">
                     <input type="file" id="excelFile" name="excelFile" accept=".xlsx, .xls, .csv, .ods" required class="form-control-file">
                 </div>
@@ -24,6 +24,6 @@
         </div>
 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script src="script.js"></script>
+<!--        <script src="script.js"></script>-->
     </body>
 </html>

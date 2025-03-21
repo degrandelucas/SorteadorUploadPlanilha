@@ -11,3 +11,37 @@ use Traits\DatabaseConnection;
 class Upload
 {
     use DatabaseConnection;
+
+    public function processUpload()
+    {
+        if (isset($_FILES['excelFile'])) {
+            $file = $_FILES['excelFile']['tmp_name'];
+            try {
+                $loadFile = IOFactory::load($file);
+                $worksheet = $loadFile->getActiveSheet();
+                $rows = $worksheet->toArray();
+
+                array_shift($rows); // Remove o cabeçalho
+
+                $connection = $this->getConnection();
+
+                foreach ($rows as $row) {
+                    $sql = "INSERT INTO participantes (numero, nome) VALUES (?, ?)";
+                    $bindState = $connection->prepare($sql);
+                    $bindState->bind_param("is", $row[0], $row[1]);
+                    $bindState->execute();
+                }
+
+                $connection->close();
+
+            } catch (\Exception $error) {
+                echo json_encode(['success' => false, 'message' => 'Erro: ' . $error->getMessage()]);
+            }
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Nenhum arquivo recebido.']);
+        }
+    }
+}
+
+$upload = new Upload();
+$upload->processUpload();

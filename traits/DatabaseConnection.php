@@ -16,10 +16,10 @@ trait DatabaseConnection{
             if ($connection->connect_error) {
                 throw new Exception("Erro conexão Banco Dados: $connection->connect_error");
             }
-            echo "Conectado com sucesso!";
+            //echo "Conectado com sucesso!";
             return $connection;
             //$connection->close();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo "Erro: " . $e->getMessage();
             return null; //null no caso de erro
         }
