@@ -43,6 +43,19 @@ class Upload
             echo json_encode(['success' => false, 'message' => 'Nenhum arquivo recebido.']);
         }
     }
+
+    public function clearDatabase()
+    {
+        try {
+            $connection = $this->getConnection();
+            $sql = "TRUNCATE TABLE participantes";
+            $connection->query($sql);
+            $connection->close();
+            echo json_encode(['success' => true, 'message' => 'Banco de dados limpo com sucesso.']);
+        } catch (\Exception $error) {
+            echo json_encode(['success' => false, 'message' => 'Erro ao limpar o banco de dados: ' . $error->getMessage()]);
+        }
+    }
 }
 
 $upload = new Upload();
