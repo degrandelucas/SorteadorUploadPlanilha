@@ -1,6 +1,6 @@
 <?php
 
-$configuration = require "database.php";
+$configuration = require 'database.php';
 
 try{
     $connection = new mysqli(
