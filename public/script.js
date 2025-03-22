@@ -30,10 +30,10 @@ document.getElementById('drawBtn').addEventListener('click', function() {
     const prize = document.getElementById('giftInput').value;
 
     //Verificar se o campo de prêmio está preenchido
-    if (prize === '') {
-        alert('Informe o prêmio');
-        return;
-    }
+    // if (prize === '') {
+    //     alert('Informe o prêmio');
+    //     return;
+    // }
 
     getWinner(prize);
 

@@ -46,8 +46,8 @@ if (isset($_POST['action']) && $_POST['action'] === 'draw') { // Verifica action
         $drawnParticipant = $raffle->drawParticipant($gift);
         echo json_encode($drawnParticipant);
     } else {
-        echo json_encode(['error' => 'Prêmio não fornecido.']);
+        echo json_encode(['error' => 'Prêmio não repassado para os dados.']);
     }
 } else {
-    echo json_encode(['error' => 'Ação inválida.']);
+    echo json_encode(['error' => 'Não foi possível realizar a ação.']);
 }
