@@ -2,8 +2,8 @@
 
 namespace Backend;
 
-require '../vendor/autoload.php';
-require '../traits/DatabaseConnection.php';
+require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../traits/DatabaseConnection.php';
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use Traits\DatabaseConnection;
