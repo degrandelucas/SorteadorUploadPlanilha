@@ -14,7 +14,7 @@ trait DatabaseConnection{
                 $configuration["dbname"]);
             //  $connection = new \mysqli(...array_values($config));
             if ($connection->connect_error) {
-                throw new Exception("Erro conexão Banco Dados: $connection->connect_error");
+                throw new \Exception("Erro conexão Banco Dados: $connection->connect_error");
             }
             //echo "Conectado com sucesso!";
             return $connection;
