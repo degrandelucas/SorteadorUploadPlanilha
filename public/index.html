@@ -19,7 +19,7 @@
             </form>
             <div class="form-group col-md-4">
                 <label for="giftInput">Prêmio:</label>
-                <input type="text" id="giftInput" class="form-control">
+                <input type="text" id="giftInput" class="form-control" placeholder="Perfume">
             </div>
             <button id="drawBtn" class="btn btn-success">Sortear</button>
             <button type="button" id="resetBtn" class="btn btn-danger" disabled>Reiniciar</button>
@@ -27,7 +27,10 @@
                 <button id="exportBtn" class="btn btn-info mt-3">Exportar Vencedores</button>
             </div>
             <div id="countDown" class="mt-3"></div>
-            <div id="winner" class="mt-3"><span>Último vencedor: </span></div>
+            <div class="mt-3">
+                <h4>Último nome</h4>
+                <span id="winner"></span>
+            </div>
             <div id="winnersList" class="mt-3">
                 <h3>Vencedores</h3>
                 <ul id="winners"></ul>

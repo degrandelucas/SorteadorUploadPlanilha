@@ -27,9 +27,9 @@ class Upload
 
                 foreach ($rows as $row) {
                     $sql = "INSERT INTO participants (number, name) VALUES (?, ?)";
-                    $bindState = $connection->prepare($sql);
-                    $bindState->bind_param("is", $row[0], $row[1]);
-                    $bindState->execute();
+                    $updateState = $connection->prepare($sql);
+                    $updateState->bind_param("is", $row[0], $row[1]);
+                    $updateState->execute();
                 }
 
                 $connection->close();
